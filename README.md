@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # RecycleApp
 
 A mobile application built with Flutter and Firebase that aims to promote recycling by allowing users to upload recyclable items, earn points, and track their progress. This app includes features for both regular users and admin access, including item uploads, points tracking, and administrative controls for approval and management.
@@ -256,3 +257,6 @@ class _LogInState extends State<LogIn> {
 }
 ```
 
+=======
+# recycleapp-web
+>>>>>>> 3b4b22b8f67a479e3f0092b61ab5d6a8d5962d59
