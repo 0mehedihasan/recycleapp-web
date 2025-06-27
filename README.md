@@ -1,6 +1,8 @@
 # ♻️ Recycle App
 ## 📋 Project Overview
 The Recycle App is a **Flutter-based mobile and web application** designed to facilitate recycling by connecting users who want to dispose of recyclable items with administrators who manage their collection and reward them for their efforts. Users can upload item details including images, addresses, quantities, and phone numbers. Admins can review these requests, approve them, award points, and track a history of approved items.
+## 🎥 Demo Video
+[![Watch the Demo](https://img.youtube.com/vi/N53CP5FF_cQ/0.jpg)](https://www.youtube.com/watch?v=N53CP5FF_cQ?autoplay=1)
 ## 🚀 Key Features
 ### 🧾 User Item Upload
 - Users can upload details of recyclable items (e.g., Plastic, Paper, Glass, Battery).
