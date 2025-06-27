@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "183108400733",
+    "project_id": "recycleapp-4bf0a",
+    "storage_bucket": "recycleapp-4bf0a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183108400733:android:ffd2c688242ac7af467fb4",
+        "android_client_info": {
+          "package_name": "com.example.recycleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183108400733-elc4tmgs862igcesgp851oafosfjstae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycleapp",
+            "certificate_hash": "d29cc9a15e335157c6bf3adea480f0b4dc0ec138"
+          }
+        },
+        {
+          "client_id": "183108400733-ur389c05sr8f8vaavtejfu8qcfjcnpqt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT_4na9FGT7ndJyVM2BsGDurw_oK-deJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183108400733-ur389c05sr8f8vaavtejfu8qcfjcnpqt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
