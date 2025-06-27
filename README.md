@@ -1,262 +1,140 @@
-<<<<<<< HEAD
-# RecycleApp
+# ♻️ Recycle App
+## 📋 Project Overview
+The Recycle App is a **Flutter-based mobile and web application** designed to facilitate recycling by connecting users who want to dispose of recyclable items with administrators who manage their collection and reward them for their efforts. Users can upload item details including images, addresses, quantities, and phone numbers. Admins can review these requests, approve them, award points, and track a history of approved items.
+## 🚀 Key Features
+### 🧾 User Item Upload
+- Users can upload details of recyclable items (e.g., Plastic, Paper, Glass, Battery).
+- Includes image upload (via device gallery).
+- Input fields for pickup address, quantity, and phone number.
+### 🧑‍💼 User Profile & Points
+- Track accumulated recycling points in a user profile.
+- Points are awarded by admin approval.
+- Points are convertible to BDT (Bangladeshi Taka) based on a defined rate.
+### 🛠️ Admin Approval Dashboard
+- View and manage pending recycling requests.
+- Admins see: user name, address, phone number, category, quantity, and points.
+- Approve requests to update user points and move the request to approved history.
+### 📜 Approved History
+- Section to view previously approved recycling requests.
+- Displays: user name, category, quantity, awarded points, phone number, and approval date.
+### 💻 Cross-Platform Compatibility
+- Built with Flutter: runs on **Android, iOS**, and **Web** platforms.
+---
+## 🧪 Technologies Used
 
-A mobile application built with Flutter and Firebase that aims to promote recycling by allowing users to upload recyclable items, earn points, and track their progress. This app includes features for both regular users and admin access, including item uploads, points tracking, and administrative controls for approval and management.
+- **Flutter** – UI toolkit for cross-platform apps.
+- **Firebase Firestore** – Real-time NoSQL database for user/item data.
+- **Firebase Storage** – (Planned) image storage.
+- **image_picker** – Plugin to pick images from the gallery.
+- **random_string** – Generates unique item IDs.
+- **intl** – Date formatting and display in the UI.
 
-## Features
-
-- **Onboarding**: Provides a seamless introduction to the app for first-time users.
-- **Authentication**: Sign up, login, and user profile management with Firebase Authentication.
-- **Points System**: Users can upload recyclable items and earn points.
-- **Admin Panel**: Admins can approve or reject uploaded items and manage user points.
-- **Bottom Navigation Bar**: Easy access to the Home, Points, and Profile screens for the user.
-- **Firebase Integration**: Real-time database to track user points, uploaded items, and authentication.
-
-## Screenshots
-
-![Home Screen](assets/images/home_screen.png)
-![Profile Screen](assets/images/profile_screen.png)
-
-## Tech Stack
-
-- **Flutter**: Framework used to build the app's UI and logic.
-- **Firebase**: Used for authentication, database, and storage.
-- **Provider**: State management for handling app-wide state.
-- **Curved Navigation Bar**: Custom navigation bar for a better user experience.
-  
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK
-- Firebase Project
-
-### Setup
-
-1. **Clone the Repository**  
-   First, clone this repository to your local machine:
-   ```bash
-   git clone https://github.com/0mehedihasan/recycleapp.git
-   cd recycleapp
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-Login.dart ( Both User and Admin ) 
-```login
-import 'package:flutter/material.dart';
-import 'package:recycleapp/services/auth.dart';
-import 'package:recycleapp/services/widget_support.dart';
-import 'package:recycleapp/Admin/admin_login.dart'; // ✅ Admin Login import
-
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
-
-  @override
-  State<LogIn> createState() => _LogInState();
-}
-
-class _LogInState extends State<LogIn> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Center(
-              child: Image.asset(
-                "images/login.png",
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 20.0),
-            Image.asset("images/recycle1.png",
-                height: 120, width: 120, fit: BoxFit.cover),
-            SizedBox(height: 20.0),
-            Text("Reduce. Reuse. Recycle.",
-                style: AppWidget.healinetextstyle(25.0)),
-            Text("Repeat!", style: AppWidget.greentextstyle(32.0)),
-            SizedBox(height: 80.0),
-            Text(
-              "Every item you recycle\nmakes a difference!",
-              textAlign: TextAlign.center,
-              style: AppWidget.normaltextstyle(20.0),
-            ),
-            Text("Get Started!", style: AppWidget.greentextstyle(24.0)),
-            SizedBox(height: 30.0),
-
-            /// ✅ Google Sign-In Button
-            GestureDetector(
-              onTap: () {
-                AuthMethods().signInWithGoogle(context);
-              },
-              child: Container(
-                margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                child: Material(
-                  elevation: 4.0,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.only(left: 20.0),
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(60),
-                          ),
-                          child: Image.asset(
-                            "images/google.png",
-                            height: 50,
-                            width: 50,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text("Sign in with Google",
-                            style: AppWidget.whitetextstyle(25.0)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            /// ✅ Admin Login Button (Styled like Google Sign-In)
-            SizedBox(height: 20.0),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AdminLogin()),
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                child: Material(
-                  elevation: 4.0,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.only(left: 20.0),
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(60),
-                          ),
-                          child: Icon(
-                            Icons.admin_panel_settings,
-                            color: Colors.black,
-                            size: 50,
-                          ),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text("Admin Login",
-                            style: AppWidget.whitetextstyle(25.0)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
+## 🛠️ Setup and Installation
+### ✅ Prerequisites
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- [Firebase CLI](https://firebase.google.com/docs/cli)
+- Node.js & npm (required for Firebase CLI)
+### 📦 Steps
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/0mehedihasan/recycleapp-web
+cd recycleapp
+````
+#### 2. Install Dependencies
+```bash
+flutter pub get
 ```
+#### 3. Firebase Project Setup
+##### Create Firebase Project
+* Go to [Firebase Console](https://console.firebase.google.com/).
+* Create a new project.
+##### Add Android App
+* Register Android App in Firebase.
+* Download `google-services.json` and place it in `android/app/`.
+##### Add iOS App
+* Register iOS App.
+* Download `GoogleService-Info.plist` and place it in `ios/Runner/`.
 
-```
-import 'package:flutter/material.dart';
-import 'package:recycleapp/services/auth.dart';
-import 'package:recycleapp/services/widget_support.dart';
-
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
-
-  @override
-  State<LogIn> createState() => _LogInState();
-}
-
-class _LogInState extends State<LogIn> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Center(
-              child: Image.asset(
-                "images/login.png",
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 20.0,),
-            Image.asset("images/recycle1.png", height: 120, width: 120, fit: BoxFit.cover,),
-               SizedBox(height: 20.0,),
-            Text("Reduce. Reuse. Recycle.", style: AppWidget.healinetextstyle(25.0),),
-            Text("Repeat!", style:AppWidget.greentextstyle(32.0) ,),
-               SizedBox(height: 80.0,),
-            Text("Every item you recycle\nmakes a difference!",textAlign: TextAlign.center, style: AppWidget.normaltextstyle(20.0),),
-            Text("Get Started!", style: AppWidget.greentextstyle(24.0),),
-            SizedBox(height: 30.0,),
-            GestureDetector(
-              onTap: (){
-                AuthMethods().signInWithGoogle(context);
-              },
-              child: Container(
-                margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                child: Material(
-                  elevation: 4.0,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.only(left: 20.0),
-                    
-                       height: 80,
-                    decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(20)),
-                    child: Row(children: [
-                      Container(
-                     
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(60)),
-                        child: Image.asset("images/google.png", height: 50, width: 50, fit: BoxFit.cover,)),
-                        SizedBox(width: 20.0,),
-                        Text("Sign in with Google", style: AppWidget.whitetextstyle(25.0),)
-                    ],),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+##### Add Web App
+* Register a Web App.
+* Configure Firebase in your Flutter Web project manually if necessary.
+#### 4. Firestore Database Setup
+##### Create Database
+* In Firebase Console, go to **Firestore Database**.
+* Click **Create database** → Start in **Test Mode**.
+##### Example Firestore Security Rules (for development)
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
   }
 }
 ```
+**Important**: For production, use more granular rules like:
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User data
+    match /users/{userId}/{documents=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
 
-=======
-# recycleapp-web
->>>>>>> 3b4b22b8f67a479e3f0092b61ab5d6a8d5962d59
+    // Admin items
+    match /adminItems/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // User uploaded items
+    match /userUploadItems/{userId}/{documentId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+## ▶️ Running the App
+### 📱 For Android/iOS
+```bash
+flutter run
+```
+### 🌐 For Web
+```bash
+flutter run -d chrome
+```
+## 🗃️ Firestore Data Structure
+### 🔹 `users` Collection
+  * `userId` (Document ID)
+  * `Name`: User’s full name
+  * `Points`: Total accumulated points
+### 🔹 `userUploadItems` Sub-Collection
+* Path: `users/{userId}/userUploadItems/{itemId}`
+  * `Image`: URL of item image
+  * `Address`: Pickup address
+  * `PhoneNumber`: User’s contact number
+  * `Quantity`: Number of items
+  * `UserId`: Uploader's ID
+  * `Name`: Uploader's name
+  * `Category`: Type of item (Plastic, Paper, etc.)
+  * `Status`: `"Pending"` or `"Approved"`
+  * `ApprovedAt`: Date/time of admin approval
+### 🔹 `adminItems` Collection
+* Mirrors data from `userUploadItems` for admin access.
+* Path: `adminItems/{itemId}`
+* Same fields as above.
+## 📌 Notes
+* 🔐 Firebase Storage integration is **commented out**. Needs implementation for image uploading.
+* ⚠️ Use development rules only for testing. Secure your rules before production.
+* 📊 Conversion rate of points to BDT is configurable in the code or admin logic.
+## 🤝 Contributions
+Feel free to fork the repo, make improvements, and submit pull requests!
+---
+## 📧 Contact
+For questions, issues, or suggestions, reach out at:
+**Md Mehedi Hasan**
+📩 [mdmehedihasansr@gmail.com](mailto:mdmehedihasansr@gmail.com)
+## 📜 License
+This project is licensed under the MIT License – see the `LICENSE` file for details.
