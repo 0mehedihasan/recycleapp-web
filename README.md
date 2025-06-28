@@ -140,30 +140,92 @@ flutter run
 ```bash
 flutter run -d chrome
 ```
-## 🗃️ Firestore Data Structure
+## ♻️ Recycle App – Firebase Firestore Structure
+### 📦 Collections & Documents
+
 ### 🔹 `users` Collection
-  * `userId` (Document ID)
-  * `Name`: User’s full name
-  * `Points`: Total accumulated points
-### 🔹 `userUploadItems` Sub-Collection
-* Path: `users/{userId}/userUploadItems/{itemId}`
-  * `Image`: URL of item image
-  * `Address`: Pickup address
-  * `PhoneNumber`: User’s contact number
-  * `Quantity`: Number of items
-  * `UserId`: Uploader's ID
-  * `Name`: Uploader's name
-  * `Category`: Type of item (Plastic, Paper, etc.)
-  * `Status`: `"Pending"` or `"Approved"`
-  * `ApprovedAt`: Date/time of admin approval
+
+Each document represents a registered user.
+
+**Document ID:** `userId`
+
+**Fields:**
+- `UserId`: string (Primary Key)
+- `Id`: string (Auth or internal ID)
+- `Points`: string
+- `email`: string
+- `image`: string (Profile photo URL)
+- `name`: string
+
+#### 🔸 Sub-Collection: `userUploadItems`
+**Path:** `users/{userId}/userUploadItems/{itemId}`
+
+**Fields:**
+- `Image`: string (URL)
+- `Address`: string
+- `PhoneNumber`: string
+- `Quantity`: string
+- `UserId`: string
+- `Name`: string
+- `Category`: string (Plastic, Paper, Battery, Glass)
+- `Status`: `"Pending"` / `"Approved"`
+- `ApprovedAt`: timestamp
+
+---
+
 ### 🔹 `adminItems` Collection
-* Mirrors data from `userUploadItems` for admin access.
-* Path: `adminItems/{itemId}`
-* Same fields as above.
+
+**Path:** `adminItems/{itemId}`  
+Mirrors data from user requests for admin access.
+
+**Fields:** *(Same as userUploadItems)*
+
+---
+
+### 🔹 `redeem` Collection
+
+**Document ID:** Auto-generated
+
+**Fields:**
+- `BDT_Equivalent`: string
+- `BkashNumber`: string
+- `Date`: string
+- `Name`: string
+- `Points`: string
+- `RedeemedAt`: timestamp
+- `Status`: `"Pending"` / `"Approved"` / `"Rejected"`
+- `UserId`: string (FK → `users/UserId`)
+
+---
+
+### 🔹 `admin` Collection
+
+**Document ID:** `id` (admin identifier)
+
+**Fields:**
+- `id`: string (Primary Key)
+- `password`: string (if storing in Firestore; recommend using Firebase Auth instead)
+
+---
+
+## 🔗 Entity Relationships
+
+| Relationship        | From         | To           | Type        | Description                          |
+|---------------------|--------------|--------------|-------------|--------------------------------------|
+| User → Request       | User.UserId  | Request.UserId | One-to-Many | A user can submit multiple requests  |
+| User → Redeem        | User.UserId  | Redeem.UserId | One-to-Many | A user can redeem points multiple times |
+| Admin → Request      | Admin.id     | Request       | One-to-Many | Admin approves or rejects requests   |
+| Admin → Redeem       | Admin.id     | Redeem        | One-to-Many | Admin processes redemption requests  |
+
+
 ## 📌 Notes
-* 🔐 Firebase Storage integration is **commented out**. Needs implementation for image uploading.
-* ⚠️ Use development rules only for testing. Secure your rules before production.
-* 📊 Conversion rate of points to BDT is configurable in the code or admin logic.
+
+- 🔐 **Security Rules**: Ensure Firestore rules restrict access based on roles (`user` vs `admin`). Do not use development rules in production.
+- 📦 **Firebase Storage**: Image upload is intended to use Firebase Storage (currently commented out).
+- 💰 **Points Conversion**: The rate of Points → BDT is configurable in backend logic or admin settings.
+- ✅ **Admin Actions**: Admins update statuses (approved/redeemed), which reflect in user views and points.
+
+
 ## 🤝 Contributions
 Feel free to fork the repo, make improvements, and submit pull requests!
 ---
