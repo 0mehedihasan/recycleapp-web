@@ -1,35 +1,68 @@
 # ♻️ Recycle App
-## 📋 Project Overview
-The Recycle App is a **Flutter-based mobile and web application** designed to facilitate recycling by connecting users who want to dispose of recyclable items with administrators who manage their collection and reward them for their efforts. Users can upload item details including images, addresses, quantities, and phone numbers. Admins can review these requests, approve them, award points, and track a history of approved items.
-## 🎥 Demo Video
-[![Watch the Demo](https://img.youtube.com/vi/N53CP5FF_cQ/0.jpg)](https://www.youtube.com/watch?v=N53CP5FF_cQ?autoplay=1)
-## 🚀 Key Features
-### 🧾 User Item Upload
-- Users can upload details of recyclable items (e.g., Plastic, Paper, Glass, Battery).
-- Includes image upload (via device gallery).
-- Input fields for pickup address, quantity, and phone number.
-### 🧑‍💼 User Profile & Points
-- Track accumulated recycling points in a user profile.
-- Points are awarded by admin approval.
-- Points are convertible to BDT (Bangladeshi Taka) based on a defined rate.
-### 🛠️ Admin Approval Dashboard
-- View and manage pending recycling requests.
-- Admins see: user name, address, phone number, category, quantity, and points.
-- Approve requests to update user points and move the request to approved history.
-### 📜 Approved History
-- Section to view previously approved recycling requests.
-- Displays: user name, category, quantity, awarded points, phone number, and approval date.
-### 💻 Cross-Platform Compatibility
-- Built with Flutter: runs on **Android, iOS**, and **Web** platforms.
----
-## 🧪 Technologies Used
 
-- **Flutter** – UI toolkit for cross-platform apps.
-- **Firebase Firestore** – Real-time NoSQL database for user/item data.
-- **Firebase Storage** – (Planned) image storage.
-- **image_picker** – Plugin to pick images from the gallery.
-- **random_string** – Generates unique item IDs.
-- **intl** – Date formatting and display in the UI.
+The **Recycle App** is a Flutter-based mobile and web application designed to simplify and encourage the recycling process. It connects users who want to dispose of recyclable items with administrators who manage collection and reward users with points that can be redeemed.
+## 📽️ Demo
+[![Recycle App Demo](https://img.youtube.com/vi/N53CP5FF_cQ/0.jpg)](https://youtu.be/N53CP5FF_cQ)
+> 🔗 Click the image to watch the video demo on YouTube.
+> 
+## 👤 User Features
+
+### 🔐 Google Sign-In
+Users can securely sign in using their Google accounts.
+
+### 🏠 Home Dashboard
+After logging in, users see a dashboard featuring recycling categories:
+- Plastic
+- Paper
+- Battery
+- Glass
+
+### 📤 Submit Recycling Request
+Users can:
+- Select a category
+- Upload an image of the recyclable item (via device gallery)
+- Enter pickup address
+- Specify quantity
+- Provide a phone number
+
+Submitted requests will appear in the **Pending Requests** section until reviewed.
+
+### 🏆 Points System
+- Users earn points once an admin approves their recycling request.
+- Points are shown on the **Points** page.
+
+### 💸 Redeem Points
+Users can:
+- Enter the number of points to redeem
+- Provide a **bKash number** for withdrawal
+
+---
+
+## 👨‍💼 Admin Features
+
+### 🔐 Manual Login
+Admins log in with a username and password.
+
+### 🖥️ Admin Dashboard
+Includes the following options:
+- **Approval Requests** – View and manage submitted recycling requests
+- **Redeem Requests** – View and approve user point redemption
+- **Logout** – Sign out of admin session
+
+### ✅ Request Approval
+- Admins can view full request details submitted by users.
+- Upon approval, the request moves to the **History** section.
+
+### 💰 Redeem Approval
+- Admins can view redemption requests.
+- Approved redemptions are also added to the **History**.
+
+## 🔧 Technologies Used
+- **Flutter** (Mobile/Web Development)
+- **Firebase Authentication** (Google Sign-In)
+- **Firebase Firestore** (Database)
+- **Firebase Storage** (Image upload)
+- **Firebase Cloud Functions** *(optional for advanced logic)
 
 ## 🛠️ Setup and Installation
 ### ✅ Prerequisites
