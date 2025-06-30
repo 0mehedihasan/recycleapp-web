@@ -4,7 +4,17 @@ The **Recycle App** is a Flutter-based mobile and web application designed to si
 ## 📽️ Demo
 [![Recycle App Demo](https://img.youtube.com/vi/N53CP5FF_cQ/0.jpg)](https://youtu.be/N53CP5FF_cQ)
 > 🔗 Click the image to watch the video demo on YouTube.
-> 
+>
+## SHA1 KEY
+- Go to Terminal
+First code:
+```info
+keytool -genkeypair -v -keystore "$env:USERPROFILE\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000
+```
+Second code:
+```info
+keytool -list -v -alias androiddebugkey -keystore "$env:USERPROFILE\.android\debug.keystore" -storepass android -keypass android
+```
 ## 👤 User Features
 
 ### 🔐 Google Sign-In
